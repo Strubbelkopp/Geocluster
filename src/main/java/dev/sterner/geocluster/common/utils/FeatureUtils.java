@@ -1,11 +1,13 @@
 package dev.sterner.geocluster.common.utils;
 
 import dev.sterner.geocluster.Geocluster;
+import dev.sterner.geocluster.api.deposits.IChunk;
 import dev.sterner.geocluster.common.components.IWorldChunkComponent;
 import dev.sterner.geocluster.common.components.IWorldDepositComponent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.ChunkSectionPos;
@@ -36,6 +38,11 @@ public class FeatureUtils {
             if (blockstate != null) {
                 worldAccess.toServerWorld().onBlockChanged(pos, blockstate, state);
             }
+
+            if (!(((IChunk) chunkaccess).getDeposits().contains(Identifier.of("geocluster", state.getBlock().toString())))) {
+                ((IChunk) chunkaccess).addDeposit(Identifier.of("geocluster", state.getBlock().toString()));
+            }
+
             return true;
         }
 

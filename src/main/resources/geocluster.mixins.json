@@ -4,12 +4,14 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BiomeModificationContextImplMixin",
-    "ChunkGeneratorSettingsMixin"
+    "ChunkGeneratorSettingsMixin",
+    "ChunkMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
+    "DebugHudMixin",
     "MinecraftClientMixin"
   ]
 }
